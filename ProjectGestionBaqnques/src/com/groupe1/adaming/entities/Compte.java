@@ -142,6 +142,16 @@ public abstract class Compte {
 		public void setTabBanque(Collection tabBanque) {
 			this.tabBanque = tabBanque;
 		}
+
+		//Redefinition toString//
+		@Override
+		public String toString() {
+			return "Compte [idCompte=" + idCompte + ", solde=" + solde
+					+ ", dateDeCreation=" + dateDeCreation + ", client="
+					+ client + ", employe=" + employe + ", operation="
+					+ operation + ", tabBanque=" + tabBanque + "]";
+		}
+		
 		
 		
 		

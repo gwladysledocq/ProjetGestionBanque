@@ -99,6 +99,13 @@ public class Employe {
 		this.tabGroupe = tabGroupe;
 	}
 
+	//Redefinition toString//
+	@Override
+	public String toString() {
+		return "Employe [idEmploye=" + idEmploye + ", nomEmploye=" + nomEmploye
+				+ ", operation=" + operation + ", tabGroupe=" + tabGroupe + "]";
+	}
+
 
 	
 	

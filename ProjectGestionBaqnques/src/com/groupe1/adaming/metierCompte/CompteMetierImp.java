@@ -41,10 +41,7 @@ public class CompteMetierImp implements ICompteMetier{
 		return dao.deleteCompte(idCompte);
 	}
 
-	@Override
-	public Collection<Compte> getComptesParClient(Compte compte, Long idClient) {
-		return dao.getComptesParClient(compte, idClient);
-	}
+	
 
 	@Override
 	public Collection<Compte> getComptesParEmploye(Compte compte, Long idEmploye) {
@@ -54,6 +51,14 @@ public class CompteMetierImp implements ICompteMetier{
 	@Override
 	public Compte updateCompte(Compte compte) {
 		return dao.updateCompte(compte);
+	}
+
+
+
+
+	@Override
+	public Compte getCompte(Long idCompte) {
+		return dao.getCompte(idCompte);
 	}
 
 

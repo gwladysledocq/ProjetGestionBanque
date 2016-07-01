@@ -35,7 +35,7 @@ public class BanqueDaoImp implements IBanqueDao {
 		ss.beginTransaction();
 		ss.save(banque);
 		ss.getTransaction().commit();
-		// ss.close();
+		ss.close();
 		logger.info("addBanque (nomAgence) : " + banque.getNomAgence());
 		return banque;
 	}
@@ -53,7 +53,7 @@ public class BanqueDaoImp implements IBanqueDao {
 		Query req = ss.createQuery("from Banque");
 		Collection<Banque> tabBanque = req.list();
 		ss.getTransaction().commit();
-		// ss.close();
+		ss.close();
 		for (Banque b : tabBanque) {
 			logger.info("getBanques (nomAgence) : " + b.getNomAgence());
 		}

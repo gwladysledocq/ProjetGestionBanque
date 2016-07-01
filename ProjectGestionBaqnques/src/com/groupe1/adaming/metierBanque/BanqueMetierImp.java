@@ -7,23 +7,31 @@ package com.groupe1.adaming.metierBanque;
  * Date: 01/07/16
  */
 import java.util.Collection;
+import java.util.logging.Logger;
 
-import com.groupe1.adaming.daoBanque.BanqueDaoImp;
 import com.groupe1.adaming.daoBanque.IBanqueDao;
 import com.groupe1.adaming.entities.Banque;
 
 public class BanqueMetierImp implements IBanqueMetier{
+	/* creation du logger */
+	Logger logger = Logger.getLogger("BanqueDaoImp");
 
 	/* creation de la DAO Banque */
-	IBanqueDao daoBanque = new BanqueDaoImp();
+	private IBanqueDao dao;
 	
+	/* setteur de daoBanque */
+	public void setDao(IBanqueDao dao) {
+		this.dao = dao;
+		logger.info("<-----------IBanqueDao a ete injectee ----------->");
+	}
+
 	/* methode qui appelle la methode addBanque (Banque banque) de IBanqueDao
 	   Entree : Banque
 	   Sortie : Banque
 	   */
 	@Override
 	public Banque addBanque(Banque banque) {
-		return daoBanque.addBanque(banque);
+		return dao.addBanque(banque);
 	}
 
 	/* methode qui appelle la methode getBanques() de IBanqueDao
@@ -32,7 +40,7 @@ public class BanqueMetierImp implements IBanqueMetier{
 	*/
 	@Override
 	public Collection<Banque> getBanques() {
-		return daoBanque.getBanques();
+		return dao.getBanques();
 	}
 
 }

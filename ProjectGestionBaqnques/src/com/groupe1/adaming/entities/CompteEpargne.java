@@ -16,37 +16,40 @@ import javax.persistence.Entity;
 public class CompteEpargne extends Compte{
 	
 	protected double tauxInteret;
+
 	
 	
+	
+	
+
+
+
 	//Constructeurs//
+	
+	public CompteEpargne(double tauxInteret) {
+		super();
+		this.tauxInteret = tauxInteret;
+	}
+
 	public CompteEpargne() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
 
-	public CompteEpargne(double solde, Date dateDeCreation, double decouvert) {
+	public CompteEpargne(double solde, Date dateDeCreation, double decouvert, double tauxInteret) {
 		super(solde, dateDeCreation, decouvert);
 		// TODO Auto-generated constructor stub
 	}
 
 
 
-	public CompteEpargne(double tauxInteret) {
-		super();
-		this.tauxInteret = tauxInteret;
-	}
-
-
-
 	//Getters And Setters//
+	
+	
+
 	public double getTauxInteret() {
 		return tauxInteret;
-	}
-
-	public void setTauxInteret(double tauxInteret) {
-		this.tauxInteret = tauxInteret;
 	}
 	
 	

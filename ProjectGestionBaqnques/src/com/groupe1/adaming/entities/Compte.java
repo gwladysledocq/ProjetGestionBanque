@@ -43,7 +43,7 @@ public abstract class Compte {
 		protected Date dateDeCreation;
 		
 		@ManyToOne
-		@JoinColumn (name = "idCompte")
+		@JoinColumn (name = "idClient")
 		protected Client client;
 		
 		@ManyToOne

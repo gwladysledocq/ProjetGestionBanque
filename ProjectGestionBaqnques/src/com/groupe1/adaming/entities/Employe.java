@@ -16,6 +16,7 @@ import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class Employe {
 	private Long idEmploye;
 	private String nomEmploye;
 	
-	@OneToMany (mappedBy = "employe", cascade=CascadeType.ALL)
+	@OneToMany (mappedBy = "employe", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private Collection<Operation> operation;
 	
 	@ManyToMany

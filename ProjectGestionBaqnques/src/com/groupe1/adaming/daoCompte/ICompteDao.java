@@ -18,7 +18,7 @@ public interface ICompteDao {
 	public Compte addCompte(Compte compte, Long idClient, Long idEmploye);
 	public Compte deleteCompte(Long idCompte);
 	public Compte getCompte (Long idCompte);
-	public Collection<Compte> getComptesParEmploye(Compte compte, Long idEmploye);
+	public Collection<Compte> getComptesParEmploye(Long idEmploye);
 	public Compte updateCompte(Compte compte);
 
 }

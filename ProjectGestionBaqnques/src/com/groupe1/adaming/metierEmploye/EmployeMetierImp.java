@@ -30,8 +30,6 @@ public class EmployeMetierImp implements IEmployeMetier{
 		}
 
 		
-		
-		
 		@Override
 		public Employe addEmploye(Employe employe) {
 			return dao.addEmploye(employe);

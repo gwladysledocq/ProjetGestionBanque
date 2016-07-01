@@ -66,14 +66,15 @@ public class CompteDaoImp implements ICompteDao{
 	
 
 	@Override
-	public Collection<Compte> getComptesParEmploye(Compte compte, Long idEmploye) {
+	public Collection<Compte> getComptesParEmploye(Long idEmploye) {
 		Session ss = sf.openSession();
 		ss.beginTransaction();
 		Employe e = (Employe) ss.get(Employe.class, idEmploye);
-		Query query = ss.createQuery("from Compte c, Employe e where c.idEmploye = e.idEmploye");
+		Query query = ss.createQuery("from Compte c, Employe e where c.employe.idEmploye = e.idEmploye");
 		ss.getTransaction().commit();
 		log.info("Il existe "+query.list().size()+" comptes créés par l'employé "+e.getNomEmploye());
 		return query.list();
+		
 	}
 
 	@Override

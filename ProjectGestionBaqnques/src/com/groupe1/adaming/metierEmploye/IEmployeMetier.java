@@ -19,3 +19,4 @@ public interface IEmployeMetier {
 	public Collection<Employe> getListEmploye();
 
 }
+

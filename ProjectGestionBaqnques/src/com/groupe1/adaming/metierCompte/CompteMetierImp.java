@@ -44,8 +44,8 @@ public class CompteMetierImp implements ICompteMetier{
 	
 
 	@Override
-	public Collection<Compte> getComptesParEmploye(Compte compte, Long idEmploye) {
-		return dao.getComptesParEmploye(compte, idEmploye);
+	public Collection<Compte> getComptesParEmploye(Long idEmploye) {
+		return dao.getComptesParEmploye(idEmploye);
 	}
 
 	@Override

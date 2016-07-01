@@ -31,7 +31,7 @@ public class EmployeDaoImp implements IEmployeDao {
 		ss.beginTransaction();
 		ss.save(employe);
 		ss.getTransaction().commit();ss.close();
-		log.info("L'employe"+employe.getNomEmploye()+" a bien été enregistré");
+		log.info("L'employe "+employe.getNomEmploye()+" a bien été enregistré");
 		return employe;
 	}
 
@@ -41,7 +41,7 @@ public class EmployeDaoImp implements IEmployeDao {
 		ss.beginTransaction();
 		Query query = ss.createQuery("from Employe e");
 		ss.getTransaction().commit();
-		log.info("Il existe"+query.list().size()+" employés");
+		log.info("Il existe "+query.list().size()+" employés");
 		return query.list();
 	}
 

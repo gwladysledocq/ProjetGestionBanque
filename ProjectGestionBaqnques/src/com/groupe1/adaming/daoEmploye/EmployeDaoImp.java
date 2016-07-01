@@ -21,9 +21,9 @@ import com.groupe1.adaming.Singleton.Singleton;
 import com.groupe1.adaming.entities.Employe;
 
 public class EmployeDaoImp implements IEmployeDao {
-	SessionFactory sf = new Configuration().configure().buildSessionFactory();
+	
 	Logger log = Logger.getLogger("EmployeDaoImp");
-	//SessionFactory sf = Singleton.getSf();
+	SessionFactory sf = Singleton.getSf();
 
 	@Override
 	public Employe addEmploye(Employe employe) {

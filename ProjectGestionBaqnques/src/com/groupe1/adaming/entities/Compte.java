@@ -51,24 +51,27 @@ public abstract class Compte {
 		protected Employe employe;
 		
 		@OneToMany (mappedBy="compte", cascade=CascadeType.ALL)
-		protected Collection operation;
+		protected Collection<Operation> operation;
 		
 		@ManyToMany
-		protected Collection tabBanque;
+		protected Collection<Banque> tabBanque;
 		
-		
+		protected double decouvert;
 		
 		//Constructeurs//
-		public Compte(double solde, Date dateDeCreation) {
-			super();
-			this.solde = solde;
-			this.dateDeCreation = dateDeCreation;
-		}
-
+		
 
 		public Compte() {
 			super();
 			// TODO Auto-generated constructor stub
+		}
+
+
+		public Compte(double solde, Date dateDeCreation, double decouvert) {
+			super();
+			this.solde = solde;
+			this.dateDeCreation = dateDeCreation;
+			this.decouvert = decouvert;
 		}
 
 
@@ -124,39 +127,52 @@ public abstract class Compte {
 		}
 
 
-		public Collection getOperation() {
+		public Collection<Operation> getOperation() {
 			return operation;
 		}
 
 
-		public void setOperation(Collection operation) {
+		public void setOperation(Collection<Operation> operation) {
 			this.operation = operation;
 		}
 
 
-		public Collection getTabBanque() {
+		public Collection<Banque> getTabBanque() {
 			return tabBanque;
 		}
 
 
-		public void setTabBanque(Collection tabBanque) {
+		public void setTabBanque(Collection<Banque> tabBanque) {
 			this.tabBanque = tabBanque;
 		}
 
+
+		public double getDecouvert() {
+			return decouvert;
+		}
+
+
+		public void setDecouvert(double decouvert) {
+			this.decouvert = decouvert;
+		}
+		
+		
+	
+		
+
 		//Redefinition toString//
+
+
 		@Override
 		public String toString() {
 			return "Compte [idCompte=" + idCompte + ", solde=" + solde
 					+ ", dateDeCreation=" + dateDeCreation + ", client="
 					+ client + ", employe=" + employe + ", operation="
-					+ operation + ", tabBanque=" + tabBanque + "]";
+					+ operation + ", tabBanque=" + tabBanque + ", decouvert="
+					+ decouvert + "]";
 		}
-		
-		
-		
-		
-		
-		
+
+
 		
 		
 }

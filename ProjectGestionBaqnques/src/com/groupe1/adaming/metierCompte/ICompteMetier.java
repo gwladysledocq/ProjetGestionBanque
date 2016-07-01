@@ -17,7 +17,7 @@ public interface ICompteMetier {
 	
 	public Compte addCompte(Compte compte, Long idClient, Long idEmploye);
 	public Compte deleteCompte(Long idCompte);
-	public Collection<Compte> getComptesParClient(Compte compte, Long idClient);
+	public Compte getCompte (Long idCompte);
 	public Collection<Compte> getComptesParEmploye(Compte compte, Long idEmploye);
 	public Compte updateCompte(Compte compte);
 

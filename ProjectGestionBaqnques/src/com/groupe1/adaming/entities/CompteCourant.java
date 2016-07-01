@@ -16,8 +16,6 @@ import javax.persistence.Entity;
 public class CompteCourant extends Compte {
 	
 	
-	protected double decouvert;
-	
 	
 	//Constructeurs//
 	public CompteCourant() {
@@ -25,24 +23,11 @@ public class CompteCourant extends Compte {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CompteCourant(double solde, Date dateDeCreation) {
-		super(solde, dateDeCreation);
+	public CompteCourant(double solde, Date dateDeCreation, double decouvert) {
+		super(solde, dateDeCreation, decouvert);
 		// TODO Auto-generated constructor stub
 	}
-
-	public CompteCourant(double solde, Date dateDeCreation, double decouvert) {
-		super(solde, dateDeCreation);
-		this.decouvert = decouvert;
-	}
 	
-	//Getters And Setters//
 	
-	public double getDecouvert() {
-		return decouvert;
-	}
-
-	public void setDecouvert(double decouvert) {
-		this.decouvert = decouvert;
-	}
 
 }

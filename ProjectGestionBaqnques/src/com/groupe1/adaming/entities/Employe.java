@@ -37,11 +37,11 @@ public class Employe {
 	private String nomEmploye;
 	
 	@OneToMany (mappedBy = "employe", cascade=CascadeType.ALL)
-	private Collection operation;
+	private Collection<Operation> operation;
 	
 	@ManyToMany
 	@JoinTable (name = "tabEmploye")
-	private Collection tabGroupe;
+	private Collection<Groupe> tabGroupe;
 
 	
 	//Constructeurs//

@@ -63,16 +63,7 @@ public class CompteDaoImp implements ICompteDao{
 		return compte;
 	}
 
-	@Override
-	public Collection<Compte> getComptesParClient(Compte compte, Long idClient) {
-		Session ss = sf.openSession();
-		ss.beginTransaction();
-		Client cl = (Client) ss.get(Client.class, idClient);
-		Query query = ss.createQuery("from Compte c, Client cl where c.idClient = cl.idClient");
-		ss.getTransaction().commit();
-		log.info("Il existe "+query.list().size()+"comptes pour le client "+cl.getNomClient());
-		return query.list();
-	}
+	
 
 	@Override
 	public Collection<Compte> getComptesParEmploye(Compte compte, Long idEmploye) {
@@ -83,6 +74,16 @@ public class CompteDaoImp implements ICompteDao{
 		ss.getTransaction().commit();
 		log.info("Il existe "+query.list().size()+" comptes créés par l'employé "+e.getNomEmploye());
 		return query.list();
+	}
+
+	@Override
+	public Compte getCompte(Long idCompte) {
+		Session ss = sf.openSession();
+		ss.beginTransaction();
+		Compte c = ss.get(Compte.class, idCompte);
+		ss.getTransaction().commit();ss.close();
+		log.info("Le Compte"+c.getIdCompte()+" a bien été recupéré");
+		return c;
 	}
 
 }

@@ -70,12 +70,14 @@ public class Groupe {
 		this.tabEmploye = tabEmploye;
 	}
 
+	
+
 	/*Redefinition toString*/
 	
 	@Override
 	public String toString() {
 		return "Groupe [idGroupe=" + idGroupe + ", nomGroupe=" + nomGroupe
-				+ ", tabEmploye=" + tabEmploye + "]";
+				+ "]";
 	}
 
 	

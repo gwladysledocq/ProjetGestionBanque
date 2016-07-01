@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!-- <bean id="daoBanque" class="com.groupe1.adaming.daoBanque.BanqueDaoImp" ></bean>
+<bean id="daoBanque" class="com.groupe1.adaming.daoBanque.BanqueDaoImp" ></bean>
 <bean id="metierBanque" class="com.groupe1.adaming.metierBanque.BanqueMetierImp" >
 <property name="dao" ref="daoBanque" ></property>
 </bean>
@@ -21,7 +21,7 @@
 <bean id="daoEmploye" class="com.groupe1.adaming.daoEmploye.EmployeDaoImp" ></bean>
 <bean id="metierEmploye" class="com.groupe1.adaming.metierEmploye.EmployeMetierImp" >
 <property name="dao" ref="daoEmploye" ></property>
-</bean> -->
+</bean>
 
 <bean id="daoGroupe" class="com.groupe1.adaming.daoGroupe.GroupeDaoImp" ></bean>
 <bean id="metierGroupe" class="com.groupe1.adaming.metierGroupe.GroupeMetierImp" >
@@ -29,10 +29,10 @@
 </bean>
 
 
-<!-- <bean id="daoOperation" class="com.groupe1.adaming.daoOperation.OperationDaoImp" ></bean>
+<bean id="daoOperation" class="com.groupe1.adaming.daoOperation.OperationDaoImp" ></bean>
 <bean id="metierOperation" class="com.groupe1.adaming.metierOperation.OperationMetierImp" >
 <property name="dao" ref="daoOperation" ></property>
-</bean> -->
+</bean>
 
 
 </beans>

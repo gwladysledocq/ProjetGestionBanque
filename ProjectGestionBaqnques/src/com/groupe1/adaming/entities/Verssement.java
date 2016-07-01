@@ -22,8 +22,8 @@ public class Verssement extends Operation{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Verssement(Date dateOperation, double montant) {
-		super(dateOperation, montant);
+	public Verssement(Date dateOperation) {
+		super(dateOperation);
 		// TODO Auto-generated constructor stub
 	}
 

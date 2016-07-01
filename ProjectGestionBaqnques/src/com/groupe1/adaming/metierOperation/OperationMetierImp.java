@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import com.groupe1.adaming.Singleton.Singleton;
 import com.groupe1.adaming.daoOperation.IOperationDao;
 import com.groupe1.adaming.entities.Compte;
+import com.groupe1.adaming.entities.Employe;
 import com.groupe1.adaming.entities.Operation;
 import com.groupe1.adaming.entities.Retrait;
 import com.groupe1.adaming.entities.Verssement;
@@ -38,27 +39,28 @@ public class OperationMetierImp implements IOperationMetier{
 		logger.info("<----------IOperationDao a bien été injecté---------->");
 	}
 	
-	/*Redefiniton méthode de l'interface*/
-	
+	/*Redefinition des méthodes de l'interface*/
+
 	@Override
-	public Operation addOperation(Operation o) {
-		return dao.addOperation(o);
+	public Operation addOperation(Operation o, Long idCompte, Long idEmploye) {
+		return dao.addOperation(o, idCompte, idEmploye);
 	}
 
 	@Override
-	public Retrait retrait(Retrait r, Long idCompte) {
+	public Retrait retrait(Long idRetrait, double montant) {
+		Retrait r = null;
 		try{
 			Session ss = sf.openSession();
 			ss.beginTransaction();
-			Compte c = (Compte) ss.get(Compte.class, idCompte);
-			if(r.getMontant() > c.getSolde()){
-				throw new ExceptionSoldeInsuffisant("Le solde est inssufisant");
+			r = ss.get(Retrait.class, idRetrait);
+			if(r.getCompte().getSolde() - r.getCompte().getDecouvert() < montant){
+				throw new ExceptionSoldeInsuffisant("Le solde n'est pas suffisant !");
 			}
-			c.setSolde(c.getSolde() - r.getMontant());
-			ss.update(c);
+			r.getCompte().setSolde(r.getCompte().getSolde() - montant);
+			ss.update(r.getCompte());
 			ss.getTransaction().commit();
 			ss.close();
-			logger.info("Le retrait : " + r + " depuis le compte " + c + " a bien été effectué.");
+			logger.info("Le retrait " + r + " du montant " + montant + " a bien été effectué.");
 		}catch(ExceptionSoldeInsuffisant e){
 			logger.warning(e.getMessage());
 		}
@@ -66,46 +68,38 @@ public class OperationMetierImp implements IOperationMetier{
 	}
 
 	@Override
-	public Verssement versement(Verssement v, Long idCompte) {
+	public Verssement versement(Long idVersement, double montant) {
 		Session ss = sf.openSession();
 		ss.beginTransaction();
-		Compte c = (Compte) ss.get(Compte.class, idCompte);
-		c.setSolde(c.getSolde() + v.getMontant());
-		ss.update(c);
+		Verssement v = ss.get(Verssement.class, idVersement);
+		v.getCompte().setSolde(v.getCompte().getSolde() + montant);
+		ss.update(v.getCompte());
 		ss.getTransaction().commit();
 		ss.close();
-		logger.info("Le retrait : " + v + " depuis le compte " + c + " a bien été effectué.");
+		logger.info("Le versement " + v + " du montant " + montant + " a bien été effectué.");		
 		return v;
 	}
 
 	@Override
-	public Retrait virement(Retrait r, Long idCompteDebite, Verssement v, Long idCompteCredite) {
-		try{
-			if(r.getMontant() != v.getMontant()){
-				throw new ExceptionMontantDifferent("Les montants sont différents !");
-			}
-		}catch(ExceptionMontantDifferent e){
-			logger.warning(e.getMessage());
-		}
+	public Retrait virement(Long idRetrait, Long idVersement, double montant) {
+		Retrait r = null;
 		try{
 			Session ss = sf.openSession();
 			ss.beginTransaction();
-			Compte cDebite = (Compte) ss.get(Compte.class, idCompteDebite);
-			Compte cCredite = (Compte) ss.get(Compte.class, idCompteCredite);
-			if(r.getMontant() > cDebite.getSolde()){
-				throw new ExceptionSoldeInsuffisant("Le solde est inssufisant");
+			r = ss.get(Retrait.class, idRetrait);
+			if(r.getCompte().getSolde() - r.getCompte().getDecouvert() < montant){
+				throw new ExceptionSoldeInsuffisant("Le solde n'est pas suffisant !");
 			}
-			cDebite.setSolde(cDebite.getSolde() - r.getMontant());
-			cCredite.setSolde(cCredite.getSolde() + v.getMontant());
-			ss.update(cDebite);
-			ss.update(cCredite);
+			Verssement v = ss.get(Verssement.class, idVersement);
+			retrait(idRetrait, montant);
+			versement(idVersement, montant);
 			ss.getTransaction().commit();
 			ss.close();
-			logger.info("Le virement : " + r + ", " + v + " a bien été effectué.");
+			logger.info("Le virement du montant " + montant + " a bien été effectué.");	
 		}catch(ExceptionSoldeInsuffisant e){
 			logger.warning(e.getMessage());
 		}
 		return r;
 	}
-
+	
 }

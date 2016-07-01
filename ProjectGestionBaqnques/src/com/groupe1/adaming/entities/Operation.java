@@ -36,7 +36,6 @@ public abstract class Operation {
 	protected Long idOperation;
 	@Temporal(TemporalType.DATE)
 	protected Date dateOperation;
-	protected double montant;
 	
 	@ManyToOne
 	@JoinColumn(name="idEMploye")
@@ -52,10 +51,9 @@ public abstract class Operation {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Operation(Date dateOperation, double montant) {
+	public Operation(Date dateOperation) {
 		super();
 		this.dateOperation = dateOperation;
-		this.montant = montant;
 	}
 	
 	/*Getters and setters*/
@@ -71,12 +69,6 @@ public abstract class Operation {
 	}
 	public void setDateOperation(Date dateOperation) {
 		this.dateOperation = dateOperation;
-	}
-	public double getMontant() {
-		return montant;
-	}
-	public void setMontant(double montant) {
-		this.montant = montant;
 	}
 	public Employe getEmploye() {
 		return employe;
@@ -97,8 +89,7 @@ public abstract class Operation {
 	@Override
 	public String toString() {
 		return "Operation [idOperation=" + idOperation + ", dateOperation="
-				+ dateOperation + ", montant=" + montant + ", employe="
-				+ employe + ", compte=" + compte + "]";
+				+ dateOperation + "]";
 	}
 	
 }

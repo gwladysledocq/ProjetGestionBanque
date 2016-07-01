@@ -1,5 +1,7 @@
 package com.groupe1.adaming.metierOperation;
 
+import com.groupe1.adaming.entities.Compte;
+import com.groupe1.adaming.entities.Employe;
 import com.groupe1.adaming.entities.Operation;
 import com.groupe1.adaming.entities.Retrait;
 import com.groupe1.adaming.entities.Verssement;
@@ -17,30 +19,30 @@ public interface IOperationMetier {
 
 	/*
 	 * Méthode pour ajouter une opération à la base de données
-	 * Entrée : Operation
+	 * Entrée : Operation, Compte, Employe
 	 * Sortie : Operation
 	 */
-	public Operation addOperation(Operation o);
+	public Operation addOperation(Operation o, Long idCompte, Long idEmploye);
 	
 	/*
 	 * Méthode pour réaliser un retrait depuis un compte
-	 * Entrée : Retrait, idCompte
+	 * Entrée : Retrait, montant
 	 * Sortie : Retrait
 	 */
-	public Retrait retrait(Retrait r, Long idCompte);
+	public Retrait retrait(Long idRetrait, double montant);
 	
 	/*
 	 * Méthode pour réaliser un versement vers un compte
-	 * Entrée : Versement, idCompte
+	 * Entrée : Versement, montant
 	 * Sortie : Versement
 	 */
-	public Verssement versement(Verssement v, Long idCompte);
+	public Verssement versement(Long idVersement, double montant);
 	
 	/*
 	 * Méthode pour réaliser un virement entre 2 comptes
-	 * Entrée : Retrait, idCompteDebite, Versement, idCompteCredite
+	 * Entrée : Retrait, Versement, montant
 	 * Sortie : Versement
 	 */
-	public Retrait virement(Retrait r, Long idCompteDebite, Verssement v, Long idCompteCredite);
+	public Retrait virement(Long idRetrait, Long idVersement, double montant);
 	
 }

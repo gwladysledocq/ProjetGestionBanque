@@ -1,5 +1,7 @@
 package com.groupe1.adaming.daoOperation;
 
+import com.groupe1.adaming.entities.Compte;
+import com.groupe1.adaming.entities.Employe;
 import com.groupe1.adaming.entities.Operation;
 
 /*
@@ -13,6 +15,6 @@ import com.groupe1.adaming.entities.Operation;
 
 public interface IOperationDao {
 
-	public Operation addOperation(Operation o);
+	public Operation addOperation(Operation o, Long idCompte, Long idEmploye);
 	
 }

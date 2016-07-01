@@ -114,7 +114,7 @@ public class ClientDaoImp implements IClientDao{
 		try {
 			Session ss = sf.openSession();
 			ss.beginTransaction();
-			Query req = ss.createQuery("from Compte c where c.client.nomClient like :mc");
+			Query req = ss.createQuery("from Client c where c.nomClient like :mc");
 			req.setParameter("mc","%"+mc+"%");
 			tabClient = req.list();
 			if(tabClient.isEmpty()){ //si le tableau de clients est vide, ExceptionAucunClientTrouve

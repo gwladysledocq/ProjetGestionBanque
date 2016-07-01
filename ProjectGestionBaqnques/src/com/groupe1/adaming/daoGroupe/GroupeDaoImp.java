@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.groupe1.adaming.Singleton.Singleton;
 import com.groupe1.adaming.entities.Employe;
@@ -53,7 +52,6 @@ public class GroupeDaoImp implements IGroupeDao {
 		ss.update(g);
 		ss.update(e);
 		ss.getTransaction().commit();
-		ss.close();
 		logger.info("L'employe " + e + " a bien été ajouté au groupe " + g);
 		return e;
 	}
@@ -68,7 +66,7 @@ public class GroupeDaoImp implements IGroupeDao {
 		tabGroupe = req.list();
 		ss.getTransaction().commit();
 		ss.close();
-		logger.info("Les groupes ont été récupérés");
+		logger.info("Les groupes ont été récupérés :" + tabGroupe);
 		return tabGroupe;
 	}
 
@@ -77,11 +75,15 @@ public class GroupeDaoImp implements IGroupeDao {
 		Collection<Employe> tabEmploye;
 		Session ss = sf.openSession();
 		ss.beginTransaction();
-		Groupe g = (Groupe) ss.get(Groupe.class, idGroupe);
+		Groupe g = ss.get(Groupe.class, idGroupe);
 		tabEmploye = g.getTabEmploye();
 		ss.getTransaction().commit();
-		ss.close();
+		for(Employe e : tabEmploye){
+			logger.info("Les employés ont été récupérés : " + e.getNomEmploye());
+		}
 		return tabEmploye;
 	}
+	
+
 
 }

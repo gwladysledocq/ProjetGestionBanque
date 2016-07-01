@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.groupe1.adaming.Singleton.Singleton;
+import com.groupe1.adaming.entities.Compte;
+import com.groupe1.adaming.entities.Employe;
 import com.groupe1.adaming.entities.Operation;
 
 /*
@@ -27,12 +29,19 @@ public class OperationDaoImp implements IOperationDao {
 	/*Redéfinition des méthodes de l'interface*/
 	
 	@Override
-	public Operation addOperation(Operation o) {
+	public Operation addOperation(Operation o, Long idCompte, Long idEmploye) {
 		Session ss = sf.openSession();
 		ss.beginTransaction();
-		ss.save(o);
+		Compte c = ss.get(Compte.class, idCompte);
+		Employe e = ss.get(Employe.class, idEmploye);
+		o.setCompte(c);
+		o.setEmploye(e);
+		c.getOperation().add(o);
+		e.getOperation().add(o);
+		ss.saveOrUpdate(o);
+		ss.saveOrUpdate(c);
+		ss.saveOrUpdate(e);
 		ss.getTransaction().commit();
-		ss.close();
 		logger.info("L'operation " + o + " a bien été ajouté.");
 		return o;
 	}

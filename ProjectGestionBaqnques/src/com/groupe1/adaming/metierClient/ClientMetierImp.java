@@ -1,7 +1,9 @@
 package com.groupe1.adaming.metierClient;
 
 import java.util.Collection;
+import java.util.logging.Logger;
 
+import com.groupe1.adaming.daoBanque.IBanqueDao;
 import com.groupe1.adaming.daoClient.ClientDaoImp;
 import com.groupe1.adaming.daoClient.IClientDao;
 import com.groupe1.adaming.entities.Client;
@@ -15,9 +17,17 @@ import com.groupe1.adaming.entities.Compte;
  * Date: 01/07/16
  */
 public class ClientMetierImp implements IClientMetier{
-
+	/* creation du logger */
+	Logger logger = Logger.getLogger("BanqueDaoImp");
+	
 	/* creation de la DAO Client */
-	IClientDao daoClient = new ClientDaoImp();
+	private IClientDao dao = new ClientDaoImp();
+	
+	/* setteur de daoClient */
+	public void setDao(IClientDao dao) {
+		this.dao = dao;
+		logger.info("<-----------IClientDao a ete injectee ----------->");
+	}
 	
 	/* methode qui appelle la methode addClient (Client client) de IClientDao
 	   Entree : Client
@@ -25,7 +35,7 @@ public class ClientMetierImp implements IClientMetier{
 	   */
 	@Override
 	public Client addClient(Client client) {
-		return daoClient.addClient(client);
+		return dao.addClient(client);
 	}
 
 	/* methode qui appelle la methode deleteClient (Long idClient) de IClientDao
@@ -34,7 +44,7 @@ public class ClientMetierImp implements IClientMetier{
 	   */
 	@Override
 	public Client deleteClient(Long idClient) {
-		return daoClient.deleteClient(idClient);
+		return dao.deleteClient(idClient);
 	}
 
 	/* methode qui appelle la methode updateClient (Client client) de IClientDao
@@ -43,7 +53,7 @@ public class ClientMetierImp implements IClientMetier{
 	   */
 	@Override
 	public Client updateClient(Client client) {
-		return daoClient.updateClient(client);
+		return dao.updateClient(client);
 	}
 
 	/* methode qui appelle la methode getComptes (Long idClient) de IClientDao
@@ -52,7 +62,7 @@ public class ClientMetierImp implements IClientMetier{
 	   */
 	@Override
 	public Collection<Compte> getComptes(Long idClient) {
-		return daoClient.getComptes(idClient);
+		return dao.getComptes(idClient);
 	}
 
 	/* methode qui appelle la methode getClientParMC (String mc) de IClientDao
@@ -61,7 +71,7 @@ public class ClientMetierImp implements IClientMetier{
 	   */
 	@Override
 	public Collection<Client> getClientParMC(String mc) {
-		return daoClient.getClientParMC(mc);
+		return dao.getClientParMC(mc);
 	}
 
 }

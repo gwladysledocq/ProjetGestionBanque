@@ -37,7 +37,7 @@ public class ClientDaoImp implements IClientDao{
 		ss.beginTransaction();
 		ss.save(client);
 		ss.getTransaction().commit();
-		//ss.close();
+		ss.close();
 		logger.info("addClient (nomClient) : "+client.getNomClient());
 		return client;
 	}
@@ -53,7 +53,7 @@ public class ClientDaoImp implements IClientDao{
 		Client cli = (Client) ss.get(Client.class, idClient);
 		ss.delete(cli);
 		ss.getTransaction().commit();
-		//ss.close();
+		ss.close();
 		logger.info("deleteClient (nomClient) : "+cli.getNomClient());
 		return cli;
 	}
@@ -68,7 +68,7 @@ public class ClientDaoImp implements IClientDao{
 		ss.beginTransaction();
 		ss.update(client);
 		ss.getTransaction().commit();
-		//ss.close();
+		ss.close();
 		logger.info("updateClient (nomClient) : "+client.getNomClient());
 		return client;
 	}
@@ -80,25 +80,27 @@ public class ClientDaoImp implements IClientDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Compte> getComptes(Long idClient) {
-		Collection<Compte> tabCompte = null;
+		Collection<Compte> listCompte = null;
 		try {
 			Session ss = sf.openSession();
 			ss.beginTransaction();
-			Query req = ss.createQuery("from Compte c where c.idClient = ?");
-			req.setParameter(1, idClient);
-			tabCompte = req.list();
-			if(tabCompte.isEmpty()){ //si le tableau de comptes est vide, ExceptionAucunCompteTrouveDepuisClient
+//			Query query = ss.createQuery("from Compte c where c.client.idClient=:x");
+//
+//			query.setParameter("x",idClient);
+			Client c = ss.get(Client.class, idClient);
+			listCompte = c.getTabCompte();
+			logger.info(" le nombre de comptes"+listCompte.size()+"du client"+idClient);
+//			listCompte = query.list();
+			if(listCompte.isEmpty()){ //si le tableau de comptes est vide, ExceptionAucunCompteTrouveDepuisClient
 				throw new ExceptionAucunCompteTrouveDepuisClient("getComptes : Collection<Compte> vide");
 			}
-			ss.getTransaction().commit();
-			for(Compte c : tabCompte){
-				logger.info("getComptes (idClient = "+idClient+") (solde) : "+c.getSolde());
-			}
-		} catch (Exception e) {
+	        ss.getTransaction().commit();
+//	        ss.close();
+		} catch (ExceptionAucunCompteTrouveDepuisClient e) {
 			logger.warning(e.getMessage());
 		}
-		//ss.close();
-		return tabCompte;
+		
+		return listCompte;
 	}
 
 	/* methode qui recupere la liste des clients en faonction d un mot cle
@@ -112,20 +114,20 @@ public class ClientDaoImp implements IClientDao{
 		try {
 			Session ss = sf.openSession();
 			ss.beginTransaction();
-			Query req = ss.createQuery("from Compte c where c.nomClient like :mc");
+			Query req = ss.createQuery("from Compte c where c.client.nomClient like :mc");
 			req.setParameter("mc","%"+mc+"%");
 			tabClient = req.list();
 			if(tabClient.isEmpty()){ //si le tableau de clients est vide, ExceptionAucunClientTrouve
 				throw new ExceptionAucunClientTrouve("getClientParMC : Collection<Client> vide");
 			}
 			ss.getTransaction().commit();
+			ss.close();
 			for(Client c : tabClient){
 				logger.info("getClientParMC (mot cle = "+mc+") (nomClient) : "+c.getNomClient());
 			}
 		} catch (Exception e) {
 			logger.warning(e.getMessage());
 		}
-		//ss.close();
 		return tabClient;
 	}
 

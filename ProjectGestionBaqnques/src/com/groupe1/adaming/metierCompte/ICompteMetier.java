@@ -15,7 +15,7 @@ import com.groupe1.adaming.entities.Compte;
 
 public interface ICompteMetier {
 	
-	public Compte addCompte(Compte compte, Long idClient, Long idEmploye);
+	public Compte addCompte(Compte compte, Long idClient, Long idEmploye, Long idBanque);
 	public Compte deleteCompte(Long idCompte);
 	public Compte getCompte (Long idCompte);
 	public Collection<Compte> getComptesParEmploye(Long idEmploye);

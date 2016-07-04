@@ -43,7 +43,7 @@ public abstract class Compte {
 		protected Date dateDeCreation;
 		
 		@ManyToOne
-		@JoinColumn (name = "idClient")
+		@JoinColumn (name = "IDC")
 		protected Client client;
 		
 		@ManyToOne
@@ -53,8 +53,9 @@ public abstract class Compte {
 		@OneToMany (mappedBy="compte", cascade=CascadeType.ALL)
 		protected Collection<Operation> operation;
 		
-		@ManyToMany
-		protected Collection<Banque> tabBanque;
+		@ManyToOne
+		@JoinColumn (name = "idBanque")
+		protected Banque banque;
 		
 		protected double decouvert;
 		
@@ -137,13 +138,14 @@ public abstract class Compte {
 		}
 
 
-		public Collection<Banque> getTabBanque() {
-			return tabBanque;
+		
+		public Banque getBanque() {
+			return banque;
 		}
 
 
-		public void setTabBanque(Collection<Banque> tabBanque) {
-			this.tabBanque = tabBanque;
+		public void setBanque(Banque banque) {
+			this.banque = banque;
 		}
 
 
@@ -155,10 +157,11 @@ public abstract class Compte {
 		public void setDecouvert(double decouvert) {
 			this.decouvert = decouvert;
 		}
+
+
 		
-		
-	
-		
+
+
 
 		//Redefinition toString//
 
@@ -166,9 +169,7 @@ public abstract class Compte {
 		@Override
 		public String toString() {
 			return "Compte [idCompte=" + idCompte + ", solde=" + solde
-					+ ", dateDeCreation=" + dateDeCreation + ", client="
-					+ client + ", employe=" + employe + ", operation="
-					+ operation + ", tabBanque=" + tabBanque + ", decouvert="
+					+ ", dateDeCreation=" + dateDeCreation + ", decouvert="
 					+ decouvert + "]";
 		}
 

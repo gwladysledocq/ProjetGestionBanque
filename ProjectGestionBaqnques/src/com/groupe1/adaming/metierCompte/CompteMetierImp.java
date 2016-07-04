@@ -32,8 +32,8 @@ public class CompteMetierImp implements ICompteMetier{
 	
 
 	@Override
-	public Compte addCompte(Compte compte, Long idClient, Long idEmploye) {
-		return dao.addCompte(compte, idClient, idEmploye);
+	public Compte addCompte(Compte compte, Long idClient, Long idEmploye, Long idBanque) {
+		return dao.addCompte(compte, idClient, idEmploye, idBanque);
 	}
 
 	@Override

@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.groupe1.adaming.Singleton.Singleton;
+import com.groupe1.adaming.entities.Banque;
 import com.groupe1.adaming.entities.Client;
 import com.groupe1.adaming.entities.Compte;
 import com.groupe1.adaming.entities.Employe;
@@ -27,16 +28,19 @@ public class CompteDaoImp implements ICompteDao{
 	SessionFactory sf = Singleton.getSf();
 
 	@Override
-	public Compte addCompte(Compte compte, Long idClient, Long idEmploye) {
+	public Compte addCompte(Compte compte, Long idClient, Long idEmploye, Long idBanque) {
 		
 		Session ss = sf.openSession();
 		ss.beginTransaction();
-		Client cl = (Client) ss.get(Client.class, idClient);
-		Employe e = (Employe) ss.get(Employe.class, idEmploye);
+		Client cl = ss.get(Client.class, idClient);
+		Employe e = ss.get(Employe.class, idEmploye);
+		Banque b = ss.get(Banque.class, idBanque);
 		compte.setClient(cl);
 		compte.setEmploye(e);
+		compte.setBanque(b);
 		ss.save(compte);
-		ss.getTransaction().commit();ss.close();
+		ss.getTransaction().commit();
+		
 		log.info("Le compte"+compte.getIdCompte()+"appartenant à "+cl.getNomClient()+" créé par "+e.getNomEmploye()+" a bien été enregistré");
 		return compte;
 	}

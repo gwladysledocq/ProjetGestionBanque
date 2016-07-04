@@ -81,22 +81,22 @@ public class Employe {
 	}
 
 
-	public Collection getOperation() {
+	public Collection<Operation> getOperation() {
 		return operation;
 	}
 
 
-	public void setOperation(Collection operation) {
+	public void setOperation(Collection<Operation> operation) {
 		this.operation = operation;
 	}
 
 
-	public Collection getTabGroupe() {
+	public Collection<Groupe> getTabGroupe() {
 		return tabGroupe;
 	}
 
 
-	public void setTabGroupe(Collection tabGroupe) {
+	public void setTabGroupe(Collection<Groupe> tabGroupe) {
 		this.tabGroupe = tabGroupe;
 	}
 

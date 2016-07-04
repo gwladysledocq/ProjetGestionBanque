@@ -17,7 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorColumn;
 
@@ -37,7 +37,7 @@ public abstract class Banque {
 	protected String codePostal;
 	
 	/* associations */
-	@ManyToMany(mappedBy="tabBanque", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="banque", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private Collection<Compte> tabCompte;
 	
 	/* constructeur sans parametre*/

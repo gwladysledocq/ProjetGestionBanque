@@ -2,6 +2,7 @@ package com.groupe1.adaming.metierEmploye;
 
 import java.util.Collection;
 
+import com.groupe1.adaming.entities.Compte;
 import com.groupe1.adaming.entities.Employe;
 /*
  * Classe: IEmployeMetier
@@ -17,6 +18,7 @@ public interface IEmployeMetier {
 	
 	public Employe addEmploye(Employe employe);
 	public Collection<Employe> getListEmploye();
+	public Collection<Compte> getComptesParEmploye(Long idEmploye);
 
 }
 

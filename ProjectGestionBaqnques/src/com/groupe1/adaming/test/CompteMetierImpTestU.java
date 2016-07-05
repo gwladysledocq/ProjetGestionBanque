@@ -49,11 +49,7 @@ public class CompteMetierImpTestU {
 		assertNotNull(c.getIdCompte());
 	}*/
 
-	/*@Test
-	public void testGetComptesParEmploye() {
-		Collection<Compte> tab = metier.getComptesParEmploye(1L);
-		assertTrue(tab.size()>0);
-	}*/
+	
 
 	/*@Test
 	public void testUpdateCompte() {

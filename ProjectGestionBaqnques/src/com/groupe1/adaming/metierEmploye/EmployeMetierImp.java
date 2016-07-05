@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.logging.Logger;
 
 import com.groupe1.adaming.daoEmploye.IEmployeDao;
+import com.groupe1.adaming.entities.Compte;
 import com.groupe1.adaming.entities.Employe;
 /*
  * Classe: EmployeMetierImp
@@ -39,6 +40,10 @@ public class EmployeMetierImp implements IEmployeMetier{
 		public Collection<Employe> getListEmploye() {
 			return dao.getListEmploye();
 		}
-
+		
+		@Override
+		public Collection<Compte> getComptesParEmploye(Long idEmploye) {
+			return dao.getComptesParEmploye(idEmploye);
+		}
 
 }

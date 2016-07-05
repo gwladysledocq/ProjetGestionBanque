@@ -11,11 +11,13 @@ package com.groupe1.adaming.daoEmploye;
 
 import java.util.Collection;
 
+import com.groupe1.adaming.entities.Compte;
 import com.groupe1.adaming.entities.Employe;
 
 public interface IEmployeDao {
 	
 	public Employe addEmploye(Employe employe);
 	public Collection<Employe> getListEmploye();
+	public Collection<Compte> getComptesParEmploye(Long idEmploye);
 
 }

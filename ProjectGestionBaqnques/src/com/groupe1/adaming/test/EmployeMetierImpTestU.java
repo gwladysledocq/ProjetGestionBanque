@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.groupe1.adaming.entities.Compte;
 import com.groupe1.adaming.entities.Employe;
 import com.groupe1.adaming.metierEmploye.IEmployeMetier;
 
@@ -40,6 +41,12 @@ public class EmployeMetierImpTestU {
 	@Test
 	public void testGetListEmploye() {
 		Collection<Employe> tab = metier.getListEmploye();
+		assertTrue(tab.size()>0);
+	}
+	
+	@Test
+	public void testGetComptesParEmploye() {
+		Collection<Compte> tab = metier.getComptesParEmploye(1L);
 		assertTrue(tab.size()>0);
 	}
 

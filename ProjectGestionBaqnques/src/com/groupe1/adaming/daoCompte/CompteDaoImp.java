@@ -38,7 +38,15 @@ public class CompteDaoImp implements ICompteDao{
 		compte.setClient(cl);
 		compte.setEmploye(e);
 		compte.setBanque(b);
+		Collection<Compte> tabCompte = cl.getTabCompte();
+		tabCompte.add(compte);
+		cl.setTabCompte(tabCompte);
+		tabCompte = b.getTabCompte();
+		tabCompte.add(compte);
+		b.setTabCompte(tabCompte);
 		ss.save(compte);
+		ss.update(cl);
+		ss.update(b);
 		ss.getTransaction().commit();
 		
 		log.info("Le compte"+compte.getIdCompte()+"appartenant à "+cl.getNomClient()+" créé par "+e.getNomEmploye()+" a bien été enregistré");

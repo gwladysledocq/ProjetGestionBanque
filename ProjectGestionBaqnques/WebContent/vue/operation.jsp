@@ -6,7 +6,7 @@
 <link href="<c:url value="/css/bootstrap/bootstrap-3.3.6-dist/css/bootstrap.css"/>" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Operation</title>
-
+<!-- com -->
 </head>
 <body>
 <script type="text/javascript">

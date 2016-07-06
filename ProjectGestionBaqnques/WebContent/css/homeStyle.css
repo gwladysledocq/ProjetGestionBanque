@@ -1,1 +1,31 @@
-@CHARSET "ISO-8859-1";
+<meta http-equiv="Content-Type" content="text/css; charset=ISO-8859-1">
+.navbar-inverse {
+    background-color: #FFF !important;
+    border-color: #FFF !important;
+}
+.nav {
+    padding-top: 5px;
+}
+.fond{
+	margin-top: -20px;
+}
+.navbar{
+	border-color: #222 !important;
+	border-radius: 0px !important;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color: rgb(200,200,200) !important;
+}
+a{
+	color: rgb(207, 74, 74) !important;
+}
+.presentation{
+	color: rgb(207, 74, 74);
+	font-size: 700%;
+	position: relative;
+	top: -420px;
+	left: 130px;
+}

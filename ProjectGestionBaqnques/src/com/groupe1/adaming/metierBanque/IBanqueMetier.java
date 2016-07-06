@@ -14,4 +14,5 @@ public interface IBanqueMetier {
 	/* methodes implementees dans BanqueMetierImp */
 	public Banque addBanque (Banque banque);
 	public Collection<Banque> getBanques();
+	public Collection<Banque> getBanquesById(Long idBanque);
 }

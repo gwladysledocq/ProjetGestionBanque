@@ -11,6 +11,9 @@ import java.util.logging.Logger;
 
 import com.groupe1.adaming.daoBanque.IBanqueDao;
 import com.groupe1.adaming.entities.Banque;
+import com.groupe1.adaming.entities.BanqueBnp;
+import com.groupe1.adaming.entities.BanqueCic;
+import com.groupe1.adaming.entities.BanqueLcl;
 
 public class BanqueMetierImp implements IBanqueMetier{
 	/* creation du logger */
@@ -43,4 +46,27 @@ public class BanqueMetierImp implements IBanqueMetier{
 		return dao.getBanques();
 	}
 
+	@Override
+	public Collection<Banque> getBanquesById(Long idBanque) {
+		return dao.getBanquesById(idBanque);
+	}
+
+	/*
+	@Override
+	public Banque addBanqueBnp(Banque banque) {
+		// TODO Auto-generated method stub
+		return dao.addBanqueBnp(new BanqueBnp());
+	}
+
+	@Override
+	public Banque addBanqueLcl(Banque banque) {
+		// TODO Auto-generated method stub
+		return dao.addBanqueLcl(new BanqueLcl());
+	}
+
+	@Override
+	public Banque addBanqueCic(Banque banque) {
+		return dao.addBanqueCic(new BanqueCic());
+	}
+*/
 }

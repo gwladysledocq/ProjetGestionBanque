@@ -8,6 +8,7 @@ package com.groupe1.adaming.daoBanque;
  * Date: 30/06/16
  */
 import java.util.Collection;
+import java.util.List;
 import java.util.logging.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -53,7 +54,20 @@ public class BanqueDaoImp implements IBanqueDao {
 		Query req = ss.createQuery("from Banque");
 		Collection<Banque> tabBanque = req.list();
 		ss.getTransaction().commit();
-		ss.close();
+		for (Banque b : tabBanque) {
+			logger.info("getBanques (nomAgence) : " + b.getNomAgence());
+		}
+		return tabBanque;
+	}
+
+	@Override
+	public Collection<Banque> getBanquesById(Long idBanque) {
+		Session ss = sf.openSession();
+		ss.beginTransaction();
+		Query req = ss.createQuery("from Banque b where b.idBanque=:x");
+		req.setParameter("x",idBanque);
+		Collection<Banque> tabBanque = req.list();
+		ss.getTransaction().commit();
 		for (Banque b : tabBanque) {
 			logger.info("getBanques (nomAgence) : " + b.getNomAgence());
 		}

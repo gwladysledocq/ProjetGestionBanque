@@ -28,6 +28,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TypeCompte", discriminatorType=DiscriminatorType.STRING)
 @Entity
@@ -39,6 +41,7 @@ public abstract class Compte {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		protected Long idCompte;
 		protected double solde;
+	
 		@Temporal(TemporalType.DATE)
 		protected Date dateDeCreation;
 		
@@ -47,7 +50,7 @@ public abstract class Compte {
 		protected Client client;
 		
 		@ManyToOne
-		@JoinColumn (name = "idEmploye")
+		@JoinColumn (name = "IDE")
 		protected Employe employe;
 		
 		@OneToMany (mappedBy="compte", cascade=CascadeType.ALL)

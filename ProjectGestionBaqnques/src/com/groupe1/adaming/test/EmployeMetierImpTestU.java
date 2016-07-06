@@ -31,7 +31,7 @@ public class EmployeMetierImpTestU {
 	
 	
 
-	@Test
+	/*@Test
 	public void testAddEmploye() {
 		Employe e = new Employe("Employe 11");
 		metier.addEmploye(e);
@@ -42,12 +42,12 @@ public class EmployeMetierImpTestU {
 	public void testGetListEmploye() {
 		Collection<Employe> tab = metier.getListEmploye();
 		assertTrue(tab.size()>0);
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void testGetComptesParEmploye() {
 		Collection<Compte> tab = metier.getComptesParEmploye(1L);
 		assertTrue(tab.size()>0);
 	}
-
+*/
 }

@@ -34,12 +34,12 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav nav-pills navbar-right">
 					<li><a href="<c:url value="home"/>">Home</a></li>
-					<li><a href="#">Client</a></li>
-					<li><a href="#">Employé</a></li>
-					<li><a href="#">Compte</a></li>
+					<li><a href="<c:url value="client"/>">Client</a></li>
+					<li><a href="<c:url value="indexEmploye"/>">Employé</a></li>
+					<li><a href="<c:url value="indexCompte"/>">Compte</a></li>
 					<li class="active"><a href="#">Groupe<span class="sr-only">(current)</span></a></li>
 					<li><a href="<c:url value="operation"/>">Operation</a></li>
-					<li><a href="#">Banque</a></li>
+					<li><a href="<c:url value="banque"/>">Banque</a></li>
 				</ul>
 			</div>
 		</div>
@@ -47,10 +47,10 @@
 
 	<section>
 	
-		<div class="panel panel-default">
+		<div>
 			<h1>Afficher les groupes</h1>
 			<form action="getGroupes">
-			<div class="panel-heading">Liste des groupes :</div>
+			<h3>Liste des groupes :</h3>
 				<p>
 					<input type="submit" name="getGroupe" value="Afficher">
 				</p>

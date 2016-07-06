@@ -108,7 +108,7 @@ public class OperationCtrl {
 		compte = metierCom.getCompte(operationModel.getIdCompte());
 		operationModel.setSoldeAfter(compte.getSolde());
 		model.addAttribute("AttrOperation", operationModel);
-		return "operation";
+		return "redirect:operation";
 	}
 	
 	@RequestMapping(value="/addOperationVirement")

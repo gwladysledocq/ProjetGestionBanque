@@ -9,6 +9,35 @@
 
 </head>
 <body>
+<script type="text/javascript">
+
+function validate(){
+	
+	var fieldMontant      = document.getElementById("mntantValid").value;
+	var fieldMontantError = document.getElementById("mntantValidError");
+	
+	var selectTypeOper      = document.getElementById("valdateTypeOper");
+	
+	
+	if(selectTypeOper.selectedIndex == 0){
+		alert("alert");
+		return false;
+	}
+	
+	
+	if(fieldMontant.length ==0){
+		fieldMontantError.innerHTML ="Vuillez renter un montant!";
+		fieldMontantError.style.color="red";
+		return false;
+	}
+	return true;
+}
+
+
+
+
+
+</script>
 
 <nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -81,14 +110,15 @@
 	</div>
 
 	<div>
-		<form action="addOperationUnCompte">
+		<form action="addOperationUnCompte" onsubmit="return validate();">
 			<table>
 				<tr>
 					<td class="excepetion">${operationModel.getExceptionSoldeInsuffisant().getMessage()}</td>
 				</tr>
 				<tr>
 					<td>Type d'opération :</td>
-					<td><select name="type">
+					<td><select name="type" id="valdateTypeOper">
+					       <option value="">Choisir une option</option>
 							<option value="retrait">Retrait</option>
 							<option value="versement">Versement</option>
 					</select></td>
@@ -111,13 +141,15 @@
 				</tr>
 				<tr>
 					<td>Montant :</td>
-					<td><input type="text" name="montant"></td>
+					<td><input type="number" name="montant" id="mntantValid"></td>
 				</tr>
+				
 				<tr>
 					<td><input type="submit" name="addOperationUnCompte"
-						value="Effectuer"></td>
+						value="Effectuer" onclick="validate()"></td>
 				</tr>
 			</table>
+			<span id="mntantValidError"></span>
 		</form>
 		<table>
 			<tr>

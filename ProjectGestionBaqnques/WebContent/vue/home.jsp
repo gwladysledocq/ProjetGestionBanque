@@ -31,12 +31,12 @@
 				<ul class="nav nav-pills navbar-right">
 					<li class="active"><a href="#">Home<span
 							class="sr-only">(current)</span></a></li>
-					<li><a href="#">Client</a></li>
-					<li><a href="#">Employé</a></li>
-					<li><a href="#">Compte</a></li>
-					<li><a href="<c:url value="groupe"/>">Groupe</a></li>
+					<li><a href="<c:url value="client"/>">Client</a></li>
+					<li><a href="<c:url value="indexEmploye"/>">Employé</a></li>
+					<li><a href="<c:url value="indexCompte"/>">Compte</a></li>
+					<li><a href="groupe" >Groupe</a></li>
 					<li><a href="<c:url value="operation"/>">Operation</a></li>
-					<li><a href="#">Banque</a></li>
+					<li><a href="<c:url value="banque"/>">Banque</a></li>
 				</ul>
 			</div>
 		</div>

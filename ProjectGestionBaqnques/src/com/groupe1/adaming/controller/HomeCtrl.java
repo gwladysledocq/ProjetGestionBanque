@@ -16,7 +16,7 @@ import com.groupe1.adaming.model.OperationModel;
 @Controller
 public class HomeCtrl {
 
-	@RequestMapping(value="/home")
+	@RequestMapping(value="/")
 	public String indexHome(OperationModel operationModel, Model model){
 		return "home";
 	}

@@ -16,6 +16,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,7 +54,7 @@ public abstract class Compte {
 		@JoinColumn (name = "IDE")
 		protected Employe employe;
 		
-		@OneToMany (mappedBy="compte", cascade=CascadeType.ALL)
+		@OneToMany (mappedBy="compte", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 		protected Collection<Operation> operation;
 		
 		@ManyToOne

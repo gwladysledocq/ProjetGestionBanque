@@ -1,5 +1,11 @@
 package com.groupe1.adaming.model;
-
+/*Class: BanqueModel
+ * Classe qui stocke les donnees de banque.jsp
+ * Package: com.groupe1.adaming.model
+ * Author: Philippe
+ * Version: 1.0.0
+ * Date: 07/07/16
+ */
 import com.groupe1.adaming.entities.Banque;
 import com.groupe1.adaming.entities.Client;
 import com.groupe1.adaming.entities.Compte;
@@ -8,6 +14,8 @@ import com.groupe1.adaming.entities.Employe;
 import java.util.Collection;
 
 public class BanqueModel {
+	
+	/* attributs */
 	private Long idBanqueChercher;
 	private Employe employe;
 	private String motCle;
@@ -21,7 +29,9 @@ public class BanqueModel {
 	private String codePostal;
 	private Collection<Client> tabClient;
 	private Collection<Employe> tabEmploye;
+	private Compte compte;
 	
+	/* accesseurs */
 	public String getMotCle() {
 		return motCle;
 	}
@@ -99,6 +109,12 @@ public class BanqueModel {
 	}
 	public void setTabBanqueChoisie(Collection<Banque> tabBanqueChoisie) {
 		this.tabBanqueChoisie = tabBanqueChoisie;
+	}
+	public Compte getCompte() {
+		return compte;
+	}
+	public void setCompte(Compte compte) {
+		this.compte = compte;
 	}
 	
 }

@@ -45,7 +45,7 @@ public class ClientCtrl {
 	 * Entree : ClientModel, Model, String, STring, String
 	 * Sortie : String
 	 */
-	@RequestMapping(value="/ajouterClient",method=RequestMethod.POST)
+	@RequestMapping(value="/ajouterClient")
 	public String addClient(ClientModel clientModel, Model model,
 			@RequestParam("nomClient")   String nomClient,
 			@RequestParam("prenomClient")   String prenomClient,
@@ -57,7 +57,7 @@ public class ClientCtrl {
 		Collection<Compte> comptes = metier.getComptes(cli.getIdClient());
 		clientModel.setTabCompte(comptes);
 		model.addAttribute("AttributAddGroupe",clientModel);
-		return "client";
+		return "redirect:client";
 	}
 
 	/* methode pour afficher la liste des clients
@@ -88,7 +88,7 @@ public class ClientCtrl {
 			}
 		}
 		model.addAttribute("AttributDeleteClient", clientModel);
-		return "client";
+		return "redirect:client";
 	}
 
 	/* methode pour updater un client
@@ -119,7 +119,7 @@ public class ClientCtrl {
 		Collection<Client> tab = metier.getClientParMC("");
 		clientModel.setTabClient(tab);
 		model.addAttribute("AttributUpdateClient", clientModel);
-		return "client";
+		return "redirect:client";
 	}
 
 	/* methode pour afficher la liste des comptes d un client

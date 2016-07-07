@@ -4,8 +4,8 @@ package com.groupe1.adaming.daoBanque;
  * Classe qui implemente IBanqueDao
  * Package: com.groupe1.adaming.daoBanque
  * Author: Philippe
- * Version: 1.0.0
- * Date: 30/06/16
+ * Version: 1.0.1
+ * Date: 07/07/16
  */
 import java.util.Collection;
 import java.util.List;
@@ -27,8 +27,9 @@ public class BanqueDaoImp implements IBanqueDao {
 
 	/*
 	 * methode qui ajoute une banque sachant les clients, les comptes et les
-	 * employes Entree : Banque, Collection<Long>, Collection<Long>,
-	 * Collection<Long> Sortie : Banque
+	 * employes 
+	 * Entree : Banque, Collection<Long>, Collection<Long>, Collection<Long> 
+	 * Sortie : Banque
 	 */
 	@Override
 	public Banque addBanque(Banque banque) {
@@ -42,8 +43,9 @@ public class BanqueDaoImp implements IBanqueDao {
 	}
 
 	/*
-	 * methode qui recupere la liste des banques Entree : void Sortie :
-	 * Collection<Banque>
+	 * methode qui recupere la liste des banques 
+	 * Entree : void 
+	 * Sortie : Collection<Banque>
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -60,6 +62,10 @@ public class BanqueDaoImp implements IBanqueDao {
 		return tabBanque;
 	}
 
+	/* methode qui recupere une liste de banques en fonction d un id
+	 * Entree : Long
+	 * Sortie : Collection<Banque>
+	 */
 	@Override
 	public Collection<Banque> getBanquesById(Long idBanque) {
 		Session ss = sf.openSession();
@@ -69,9 +75,25 @@ public class BanqueDaoImp implements IBanqueDao {
 		Collection<Banque> tabBanque = req.list();
 		ss.getTransaction().commit();
 		for (Banque b : tabBanque) {
-			logger.info("getBanques (nomAgence) : " + b.getNomAgence());
+			logger.info("getBanquesById : " + b.getNomAgence());
 		}
 		return tabBanque;
+	}
+
+	/* methode qui recupere une banque en fonction d un id
+	 * Entree : Long
+	 * Sortie Banque
+	 */
+	@Override
+	public Banque getBanqueById(Long idBanque) {
+		Session ss = sf.openSession();
+		ss.beginTransaction();
+		Query req = ss.createQuery("from Banque b where b.idBanque=:x");
+		req.setParameter("x",idBanque);
+		Banque ban = (Banque) req.list().get(0);
+		ss.getTransaction().commit();
+		logger.info("getBanque : " + ban.getNomAgence());
+		return ban;
 	}
 
 }

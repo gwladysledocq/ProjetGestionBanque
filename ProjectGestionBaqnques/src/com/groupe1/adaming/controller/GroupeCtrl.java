@@ -57,18 +57,11 @@ public class GroupeCtrl {
 		Collection<Employe> tousEmploye = metierEmp.getListEmploye();
 		groupeModel.setTousEmploye(tousEmploye);
 		affichage=true;
-		try {
-			if(nomGroupe.equals("")){
-				throw new NomVideGroupeException("Le nom est vide !");
-			}
-			Groupe g = new Groupe(nomGroupe);
-			metier.addGroupe(g);
-			groupeModel.setAffichageGroupes(affichage);
-			model.addAttribute("AttrGroupe",groupeModel);
-		} catch (NomVideGroupeException e) {
-			groupeModel.setNomVideException(e);
-		}
-		return "groupe";
+		Groupe g = new Groupe(nomGroupe);
+		metier.addGroupe(g);
+		groupeModel.setAffichageGroupes(affichage);
+		model.addAttribute("AttrGroupe",groupeModel);
+		return "redirect:groupe";
 	}
 	
 	@RequestMapping(value="/getEmployesOfGroupe",method=RequestMethod.POST)
@@ -117,7 +110,7 @@ public class GroupeCtrl {
 		}
 		groupeModel.setAffichageGroupes(affichage);
 		model.addAttribute("AttrGroupe",groupeModel);
-		return "groupe";
+		return "redirect:groupe";
 	}
 	
 }

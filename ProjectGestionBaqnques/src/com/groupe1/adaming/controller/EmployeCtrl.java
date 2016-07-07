@@ -79,9 +79,11 @@ public class EmployeCtrl {
 	
 	@RequestMapping(value="/getComptesParEmploye")
 	public String getComptesParEmploye(EmployeModel employeModel, Model model){
-		List<Compte> tbComptes=null;
-		tbComptes=(List<Compte>) metier.getComptesParEmploye(employeModel.getIdEmploye());
+		Collection<Compte> tbComptes=null;
+		tbComptes= metier.getComptesParEmploye(employeModel.getIdEmploye());
 		employeModel.setTabCompte(tbComptes);
+		Collection<Employe> employes = metier.getListEmploye();
+		employeModel.setTabEmploye(employes);
 		model.addAttribute("AttrEmploye",employeModel);
 		return "employe";
 	}

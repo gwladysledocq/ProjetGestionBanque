@@ -3,8 +3,8 @@ package com.groupe1.adaming.daoBanque;
  * Interface DAO Banque
  * Package: com.groupe1.adaming.daoBanque
  * Author: Philippe
- * Version: 1.0.0
- * Date: 01/07/16
+ * Version: 1.0.1
+ * Date: 07/07/16
  */
 import java.util.Collection;
 import java.util.List;
@@ -16,9 +16,6 @@ public interface IBanqueDao {
 	public Banque addBanque (Banque banque);
 	public Collection<Banque> getBanques();
 	public Collection<Banque> getBanquesById(Long idBanque);
-	/*
-	public Banque addBanqueBnp (Banque banque);
-	public Banque addBanqueLcl (Banque banque);
-	public Banque addBanqueCic (Banque banque);
-	*/
+	public Banque getBanqueById(Long idBanque);
+
 }

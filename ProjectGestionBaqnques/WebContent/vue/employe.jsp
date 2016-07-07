@@ -9,6 +9,39 @@
 
 </head>
 <body>
+
+<script>
+
+function validateAddEmploye(){
+
+	var fieldValidateEmploye = document.getElementById("validateEmploye").value;
+	var fieldValidateEmployeError = document.getElementById("validateEmployeError");
+	
+	if(fieldValidateEmploye.length ==0){
+		fieldValidateEmployeError.innerHTML = "Veuillez entrer un nom !";
+		fieldValidateEmployeError.style.color = "red";
+		return false;
+	}
+	return true;
+}
+
+function getEmploye(){
+	
+	var selectValidateIdEmploye = document.getElementById("validateIdEmploye");
+	var selectValidateIdEmployeError = document.getElementById("validateIdEmployeError");
+	
+	if(selectValidateIdEmploye.selectedIndex == 0){
+		selectValidateIdEmployeError.innerHTML = "Veuillez choisir un nom !";
+		selectValidateIdEmployeError.style.color = "red";
+		return false;
+	}
+	return true;
+}
+
+</script>
+
+
+
 <nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 
@@ -29,10 +62,10 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav nav-pills navbar-right">
-					<li class="active"><a href="#">Home<span
+					<li ><a href="#">Home<span
 							class="sr-only">(current)</span></a></li>
 					<li><a href="<c:url value="client"/>">Client</a></li>
-					<li><a href="<c:url value="indexEmploye"/>">Employé</a></li>
+					<li class="active"><a href="<c:url value="indexEmploye"/>">Employé</a></li>
 					<li><a href="<c:url value="indexCompte"/>">Compte</a></li>
 					<li><a href="<c:url value="groupe"/>">Groupe</a></li>
 					<li><a href="<c:url value="operation"/>">Operation</a></li>
@@ -44,16 +77,19 @@
 <section>	
    <div>
        <h1>Enregistrer un employe</h1>
-		<form action="addEmploye" method="post">
+		<form action="addEmploye" method="post" onsubmit="return validateAddEmploye()">
+		<div>
+		<span id="validateEmployeError"></span>
+		</div>
 		   <table class="table">
 		   
 		    <tr>
 				<td>Nom Employe</td>
-				<td><input type="text" name="nom"></td>
+				<td><input type="text" name="nom" id="validateEmploye"></td>
 			</tr>
 
 			<tr>
-				<td><input type="submit" value="Ajouter" /></td>
+				<td><input type="submit" value="Ajouter" onclick="validateAddEmploye()"/></td>
 			</tr>
 		   
 		   </table>
@@ -89,18 +125,25 @@
 <section>
         <div>
           <h1>Afficher les comptes créés par un employé</h1>
-		  <form action="getComptesParEmploye">
+		  <form action="getComptesParEmploye" onsubmit="return getEmploye();">
+		  <div>
+		<span id="validateIdEmployeError"></span>
+		</div>
 			<table class="table">
 				<tr>
 					<td>Nom de l'employe :</td>
-					<td><select name="idEmploye">
+					<td><select name="idEmploye" id="validateIdEmploye">
+							<option>Choisir</option>
 							<c:forEach items="${employeModel.tabEmploye}" var="e">
 								<option value="${e.idEmploye}">${e.nomEmploye}</option>
 							</c:forEach>
 					</select>
 					</td>
-					<td><input type="submit" value="Afficher les comptes"></td>
-				</tr>				
+					<td><input type="submit" value="Afficher les comptes" onclick="getEmploye()"></td>
+				</tr>
+				</table>
+				
+				<table class="table">				
 	            <tr>
 					<td>Employe choisi : ${employeModel.nomEmploye}</td>
 				</tr>

@@ -3,8 +3,8 @@ package com.groupe1.adaming.metierBanque;
  * Classe qui implemente IBanqueMetier
  * Package: com.groupe1.adaming.metierBanque
  * Author: Philippe
- * Version: 1.0.0
- * Date: 01/07/16
+ * Version: 1.0.1
+ * Date: 07/07/16
  */
 import java.util.Collection;
 import java.util.logging.Logger;
@@ -38,7 +38,7 @@ public class BanqueMetierImp implements IBanqueMetier{
 	}
 
 	/* methode qui appelle la methode getBanques() de IBanqueDao
-	   Entree : void
+	   Entree : Banque
 	   Sortie : Collection<Banque>
 	*/
 	@Override
@@ -46,27 +46,23 @@ public class BanqueMetierImp implements IBanqueMetier{
 		return dao.getBanques();
 	}
 
+	/* methode qui appelle la methode getBanquesById(Long idBanque) de IBanqueDao
+	 * Entree : Long
+	 * Sortie Collection<Banque>
+	 */
 	@Override
 	public Collection<Banque> getBanquesById(Long idBanque) {
 		return dao.getBanquesById(idBanque);
 	}
 
-	/*
+	/* methode qui appelle la methode getBanqueById(Long idBanque) de IBanqueDao
+	 * Entree : Long
+	 * Sortie : Banque
+	 */
 	@Override
-	public Banque addBanqueBnp(Banque banque) {
-		// TODO Auto-generated method stub
-		return dao.addBanqueBnp(new BanqueBnp());
+	public Banque getBanqueById(Long idBanque) {
+		return dao.getBanqueById(idBanque);
 	}
 
-	@Override
-	public Banque addBanqueLcl(Banque banque) {
-		// TODO Auto-generated method stub
-		return dao.addBanqueLcl(new BanqueLcl());
-	}
-
-	@Override
-	public Banque addBanqueCic(Banque banque) {
-		return dao.addBanqueCic(new BanqueCic());
-	}
-*/
+	
 }

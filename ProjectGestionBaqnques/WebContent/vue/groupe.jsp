@@ -12,6 +12,58 @@
 
 <body>
 
+	<script type="text/javascript">
+		function nomGroupeValidate() {
+
+			var fieldnomGroupe = document.getElementById("nomGroupeValid").value;
+			var fieldnomGroupeError = document
+					.getElementById("nomGroupeValidError");
+
+			if (fieldnomGroupe.length == 0) {
+				fieldnomGroupeError.innerHTML = "Veuillez saisir un nom de groupe !";
+				fieldnomGroupeError.style.color = "red";
+				return false;
+			}
+
+			return true;
+		}
+
+		function nomGroupeValidateEmploye() {
+
+			var selectValidateNomGroupe = document
+					.getElementById("validatetNomGroupe");
+
+			var selectValidateNomGroupeError = document
+					.getElementById("validatetNomGroupeError");
+
+			if (selectValidateNomGroupe.selectedIndex == 0) {
+				selectValidateNomGroupeError.innerHTML = "Veuillez choisir un nom de groupe !";
+				selectValidateNomGroupeError.style.color = "red";
+				return false;
+			}
+
+			return true;
+		}
+
+		function addEmployeValidate() {
+
+			var selectValidateGroupe = document
+					.getElementById("validateGroupe");
+			var selectValidateEmploye = document
+					.getElementById("validateEmploye");
+			
+			var selectValidateError = document.getElementById("validateError");
+			
+			if(selectValidateGroupe.selectedIndex == 0 || selectValidateEmploye.selectedIndex == 0){
+				selectValidateError.innerHTML = "Veuillez choisir un nom de groupe et un nom d'employé !";
+				selectValidateError.style.color = "red";
+				return false;
+			}
+			
+			return true;
+		}
+	</script>
+
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 
@@ -46,11 +98,11 @@
 	</nav>
 
 	<section>
-	
+
 		<div>
 			<h1>Afficher les groupes</h1>
 			<form action="getGroupes">
-			<h3>Liste des groupes :</h3>
+				<h3>Liste des groupes :</h3>
 				<p>
 					<input type="submit" name="getGroupe" value="Afficher">
 				</p>
@@ -71,46 +123,54 @@
 				</table>
 			</form>
 		</div>
-		
+
 		<div>
 			<h1>Enregistrer un groupe</h1>
-			<form action="saveGroupe" method="post">
+			<form action="saveGroupe" method="post"
+				onsubmit="return nomGroupeValidate();">
+				<h3>Ajouter un groupe :</h3>
+				<div>
+					<span id="nomGroupeValidError" class="alert-link"></span>
+				</div>
 				<table>
 					<tr>
-						<th>Ajouter un groupe :</th>
-					</tr>
-					<tr>
-						<td class="excepetion">${groupeModel.nomVideException.getMessage()}</td>
-					</tr>
-					<tr>
-						<td>Nom Groupe :</td>
-						<td><input type="text" name="nomGroupe"></td>
+						<td>Entrez le nom du groupe :</td>
+						<td><input type="text" name="nomGroupe" id="nomGroupeValid"></td>
 						<td><input type="submit" name="SaveGroupe"
-							value="Sauvegarder"></td>
+							value="Sauvegarder" onclick="nomGroupeValidate()"></td>
 					</tr>
 				</table>
 			</form>
 		</div>
+
 		<div>
 			<h1>Afficher les employés d'un groupe</h1>
-			<form action="getEmployesOfGroupe" method="post">
+			<form action="getEmployesOfGroupe" method="post"
+				onsubmit="return nomGroupeValidateEmploye();">
+				<h3>Afficher les employés d'un groupe :</h3>
+				<div>
+					<span id="validatetNomGroupeError" class="alert-link"></span>
+				</div>
 				<table>
 					<tr>
-						<th>Afficher les employés d'un groupe :</th>
-					</tr>
-					<tr>
-						<td>Nom du groupe :</td>
-						<td><select name="idGroupe">
+						<td>Choisissez le nom du groupe :</td>
+						<td><select name="idGroupe" id="validatetNomGroupe">
+								<option value="">Choisir</option>
 								<c:forEach items="${groupeModel.tabGroupe}" var="gr">
 									<option value="${gr.idGroupe}">${gr.nomGroupe}</option>
 								</c:forEach>
 						</select></td>
-						<td><input type="submit" name="SaveEmploye" value="Afficher"></td>
+						<td><input type="submit" name="SaveEmploye" value="Afficher les employés"
+							onclick="nomGroupeValidateEmploye()"></td>
 					</tr>
-					<c:if test="${groupeModel.nomGroupe != null}">
+				</table>
+				<c:if test="${groupeModel.nomGroupe != null}">
+					<table>
 						<tr>
 							<td>Groupe choisi : ${groupeModel.nomGroupe}</td>
 						</tr>
+					</table>
+					<table class="table">
 						<tr>
 							<th>Id</th>
 							<th>nomEmploye</th>
@@ -121,32 +181,37 @@
 								<td>${emp.nomEmploye}</td>
 							</tr>
 						</c:forEach>
-					</c:if>
-				</table>
+
+					</table>
+				</c:if>
 			</form>
 		</div>
+
 		<div>
 			<h1>Ajouter un employé à un groupe</h1>
-			<form action="addEmployesToGroupe" method="post">
+			<form action="addEmployesToGroupe" method="post" onsubmit="return addEmployeValidate();">
+				<h3>Ajouter un employé à un groupe :</h3>
+				<div>
+					<span id="validateError" class="alert-link"></span>
+				</div>
 				<table>
 					<tr>
-						<th>Ajouter un employé à un groupe :</th>
-					</tr>
-					<tr>
-						<td>Nom du groupe :</td>
-						<td><select name="idGroupeAdd">
+						<td>Choisir le nom du groupe :</td>
+						<td><select name="idGroupeAdd" id="validateGroupe">
+								<option value="">Choisir</option>
 								<c:forEach items="${groupeModel.tabGroupe}" var="gr">
 									<option value="${gr.idGroupe}">${gr.nomGroupe}</option>
 								</c:forEach>
 						</select></td>
-						<td>Nom de l'employé :</td>
-						<td><select name="idEmployeAdd">
+						<td>Choisir le nom de l'employé :</td>
+						<td><select name="idEmployeAdd" id="validateEmploye">
+								<option value="">Choisir</option>
 								<c:forEach items="${groupeModel.tousEmploye}" var="emp">
 									<option value="${emp.idEmploye}">${emp.nomEmploye}</option>
 								</c:forEach>
 						</select></td>
 						<td><input type="submit" name="SaveEmployeToGroupe"
-							value="Ajouter"></td>
+							value="Ajouter" onclick="addEmployeValidate()"></td>
 					</tr>
 				</table>
 			</form>

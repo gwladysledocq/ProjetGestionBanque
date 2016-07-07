@@ -1,11 +1,19 @@
 package com.groupe1.adaming.model;
-
+/*Class: ClientModel
+ * Classe qui stocke les donnees de client.jsp
+ * Package: com.groupe1.adaming.model
+ * Author: Philippe
+ * Version: 1.0.0
+ * Date: 07/07/16
+ */
 import java.util.Collection;
 
 import com.groupe1.adaming.entities.Client;
 import com.groupe1.adaming.entities.Compte;
 
 public class ClientModel {
+	
+	/* attributs */
 	private Collection<Client> tabClient;
 	private String nomClient;
 	private String prenomClient;
@@ -18,6 +26,7 @@ public class ClientModel {
 	private String prenomClientUpdate;
 	private String adrClientUpdate;
 
+	/* accesseurs */
 	public Collection<Client> getTabClient() {
 		return tabClient;
 	}

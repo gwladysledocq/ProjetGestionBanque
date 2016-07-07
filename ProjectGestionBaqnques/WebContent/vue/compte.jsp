@@ -234,11 +234,11 @@ function validateUpdateCompte(){
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav nav-pills navbar-right">
-					<li class="active"><a href="#">Home<span
+					<li ><a href="#">Home<span
 							class="sr-only">(current)</span></a></li>
 					<li><a href="<c:url value="client"/>">Client</a></li>
 					<li><a href="<c:url value="indexEmploye"/>">Employé</a></li>
-					<li><a href="<c:url value="indexCompte"/>">Compte</a></li>
+					<li class="active"><a href="<c:url value="indexCompte"/>">Compte</a></li>
 					<li><a href="<c:url value="groupe"/>">Groupe</a></li>
 					<li><a href="<c:url value="operation"/>">Operation</a></li>
 					<li><a href="<c:url value="banque"/>">Banque</a></li>

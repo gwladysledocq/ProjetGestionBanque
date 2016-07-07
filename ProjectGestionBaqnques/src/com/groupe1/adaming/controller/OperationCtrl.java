@@ -72,6 +72,8 @@ public class OperationCtrl {
 			}
 		}
 		operationModel.setTabOperation(tabOperation);
+		Collection<Employe> tabEmploye = metierEmp.getListEmploye();
+		operationModel.setTousEmploye(tabEmploye);
 		model.addAttribute("AttrOperation", operationModel);
 		return "operation";
 	}
@@ -144,7 +146,7 @@ public class OperationCtrl {
 		operationModel.setSoldeAfterDebite(compteDebite.getSolde());
 		operationModel.setSoldeAfterCredite(compteCredite.getSolde());
 		model.addAttribute("AttrOperation", operationModel);
-		return "operation";
+		return "redirect:operation";
 	}
 	
 }

@@ -21,4 +21,9 @@ public class HomeCtrl {
 		return "home";
 	}
 	
+	@RequestMapping(value="/home")
+	public String indexHome2(OperationModel operationModel, Model model){
+		return "home";
+	}
+	
 }

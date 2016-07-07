@@ -9,7 +9,9 @@ package com.groupe1.adaming.daoEmploye;
  * 
  */
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.hibernate.Query;
@@ -18,13 +20,18 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.groupe1.adaming.Singleton.Singleton;
+import com.groupe1.adaming.entities.Client;
 import com.groupe1.adaming.entities.Compte;
 import com.groupe1.adaming.entities.Employe;
+import com.groupe1.adaming.metierClient.ClientMetierImp;
+import com.groupe1.adaming.metierClient.IClientMetier;
 
 public class EmployeDaoImp implements IEmployeDao {
 	
 	Logger log = Logger.getLogger("EmployeDaoImp");
 	SessionFactory sf = Singleton.getSf();
+	
+	private IClientMetier metierCl = new ClientMetierImp();
 
 	@Override
 	public Employe addEmploye(Employe employe) {
@@ -50,11 +57,14 @@ public class EmployeDaoImp implements IEmployeDao {
 	public Collection<Compte> getComptesParEmploye(Long idEmploye) {
 		Session ss = sf.openSession();
 		ss.beginTransaction();
-		Employe e = (Employe) ss.get(Employe.class, idEmploye);
-		Query query = ss.createQuery("from Compte c, Employe e where c.employe.idEmploye = e.idEmploye");
+		Employe e = ss.get(Employe.class, idEmploye);
+		Query query = ss.createQuery("select c from Compte c where c.employe.idEmploye = :x");
+		query.setParameter("x",idEmploye);
+		@SuppressWarnings("unchecked")
+		Collection<Compte> tabCompte = (Collection<Compte>) query.list();
 		ss.getTransaction().commit();
-		log.info("Il existe "+query.list().size()+" comptes créés par l'employé "+e.getNomEmploye());
-		return query.list();
+		log.info("Il existe "+tabCompte.size()+" comptes créés par l'employé "+e.getNomEmploye());
+		return tabCompte;
 		
 	}
 

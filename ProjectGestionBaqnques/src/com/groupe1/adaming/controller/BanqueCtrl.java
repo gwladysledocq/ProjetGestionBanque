@@ -50,12 +50,6 @@ public class BanqueCtrl {
 	public String indexBanque(BanqueModel banqueModel, Model model) {
 		Collection<Banque> tab = metier.getBanques();
 		banqueModel.setTabBanque(tab);
-/*		Collection<Compte> tabCompte = banqueModel.getTabCompte();
-		Iterator<Banque> it = tab.iterator();
-		while(it.hasNext()){
-			tabCompte.addAll(it.next().getTabCompte());
-		}
-		banqueModel.setTabCompte(tabCompte);*/
 		model.addAttribute("AttributIndexBanque", banqueModel);
 		return "banque";
 	}
@@ -69,14 +63,14 @@ public class BanqueCtrl {
 		Collection<Banque> tab = metier.getBanques();
 		banqueModel.setTabBanque(tab);
 		model.addAttribute("AttributIndexBanque", banqueModel);
-		return "banque";
+		return "redirect:banque";
 	}
 
 	/* methode pour ajouter une banque
 	 * Entree : BanqueModel, Model, String, String, String, String
 	 * Sortie : String
 	 */
-	@RequestMapping(value = "/ajouterBanque", method = RequestMethod.POST)
+	@RequestMapping(value = "/ajouterBanque")
 	public String ajouterBanque(BanqueModel banqueModel, Model model, @RequestParam("nomAgence") String nomAgence,
 			@RequestParam("adrAgence") String adrAgence, @RequestParam("cpAgence") String cpAgence,
 			@RequestParam("typeBanque") String typeBanque) {
@@ -101,7 +95,7 @@ public class BanqueCtrl {
 		banqueModel.setTabBanque(tabBanque);
 		model.addAttribute("AttributAddBanque", banqueModel);
 		
-		return "banque";
+		return "redirect:banque";
 
 	}
 
@@ -109,53 +103,41 @@ public class BanqueCtrl {
 	 * Entree : BanqueModel, Model, String
 	 * Sortie : String
 	 */
-	/*@RequestMapping(value = "/afficherInfosBanque", method = RequestMethod.POST)
+	@SuppressWarnings("null")
+	@RequestMapping(value = "/afficherInfosBanque")
 	public String afficherInfosBanque(BanqueModel banqueModel, Model model,
-			@RequestParam("nomAgence") String nomAgence) {
-		System.out.println("afficherInfosBanque");
+			@RequestParam("idBanque") Long idBanque) {
+		System.out.println("---------------debut de la fct-----------");
+		Banque ban = metier.getBanqueById(idBanque);
+		banqueModel.setBanque(ban);
+		System.out.println("------------banque"+ban.getNomAgence());
+		Collection<Compte> tabCompteOfBanque = ban.getTabCompte();
+		banqueModel.setTabCompte(tabCompteOfBanque);
+		//Iterator<Compte> it = tabCompteOfBanque.iterator();
+		//Compte com = banqueModel.getCompte();
+		List<Client> tabClient = new ArrayList<Client>();
+		List<Employe> tabEmploye = new ArrayList<Employe>();
+//		while(it.hasNext()){
+//			com = it.next();
+//			System.out.println("-----compte---"+com.getSolde());
+//			tabClient.add(com.getClient());
+//			tabEmploye.add(com.getEmploye());
+//		}
+		for(Compte com : tabCompteOfBanque){
+			tabClient.add(com.getClient());
+			tabEmploye.add(com.getEmploye());
+		}
+		
+		banqueModel.setTabClient(tabClient);
+		banqueModel.setTabEmploye(tabEmploye);
+		System.out.println("---tabCompte----"+tabCompteOfBanque+"-----tabClient----"+tabClient+"-----tabEmploye----"+tabEmploye);
 		Collection<Banque> tab = metier.getBanques();
 		banqueModel.setTabBanque(tab);
-		Banque b = null;
-		
-		Compte cli = null;
-		System.out.println("------------A-------------tab"+tab.size());
-		for (Banque banq : tab) {
-			if (banq.getNomAgence().equals(nomAgence)) {
-				b = banq;
-				banqueModel.setBanque(b);
-				
-				Collection<Compte> tabCompteOfBanque = b.getTabCompte();
-				banqueModel.setTabCompte(tabCompteOfBanque); 
-				Iterator<Compte> iterator = tabCompteOfBanque.iterator();
-
-				
-				Collection<Client> tabClient =  banqueModel.getTabClient();
-				Collection<Employe> tabEmploye = banqueModel.getTabEmploye();
-				System.out.println("-----B-------tabCompte "+tabCompteOfBanque.size());
-				//ça marche jusque là
-				while (iterator.hasNext()) {
-					
-					cli = (Compte) iterator.next();
-					System.out.println("----------------it"+cli.getSolde());
-					System.out.println("----------------iterator"+cli.getEmploye());
-					//tabClient.add(cli.getClient());
-					//tabEmploye.add(cli.getEmploye());
-				}
-
-					
-				
-				//System.out.println("----------tabClient------"+tabClient.size());
-				//banqueModel.setTabClient(tabClient);
-				//banqueModel.setTabEmploye(tabEmploye);
-			}
-			
-			model.addAttribute("AttributAfficherInfosBanque", banqueModel);
-
-		}
+		model.addAttribute("AttributAfficherInfosBanque", banqueModel);
 		return "banque";
 
-	}*/
-	@RequestMapping(value = "/afficherInfosBanque", method = RequestMethod.GET)
+	}
+	/*@RequestMapping(value = "/afficherInfosBanque")
 		
 		public String afficherInfosBanque(BanqueModel banqueModel, Model model){
 		    
@@ -166,6 +148,6 @@ public class BanqueCtrl {
 		   
 		    return "banque";
 		
-	     }
+	     }*/
 	
 }

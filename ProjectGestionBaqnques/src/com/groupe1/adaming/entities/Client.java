@@ -29,7 +29,7 @@ public class Client {
 	private String adrClient;
 
 	/* associations */
-	@OneToMany(mappedBy="idCompte", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="client", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Collection<Compte> tabCompte;
 
 	/* constructeur sans parametre */

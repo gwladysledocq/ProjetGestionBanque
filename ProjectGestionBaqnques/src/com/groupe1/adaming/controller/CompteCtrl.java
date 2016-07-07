@@ -58,7 +58,7 @@ public class CompteCtrl {
 		metier.addCompte(c, idClient, idEmploye, idBanque);	
 		compteModel.setCompte(c);
 		model.addAttribute("AttrCompte",compteModel);
-		return "compte";	
+		return "redirect:indexCompte";	
 	}
 	
 	@RequestMapping(value="/addCompteEpargne")

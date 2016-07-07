@@ -18,6 +18,7 @@ public class EmployeModel {
 	private double solde;
 	private Date dateDeCreation;
 	private String nomEmploye;
+	private boolean affichageEmployes = false;
 
 	
 	
@@ -82,6 +83,14 @@ public class EmployeModel {
 
 	public void setDateDeCreation(Date dateDeCreation) {
 		this.dateDeCreation = dateDeCreation;
+	}
+
+	public boolean isAffichageEmployes() {
+		return affichageEmployes;
+	}
+
+	public void setAffichageEmployes(boolean affichageEmployes) {
+		this.affichageEmployes = affichageEmployes;
 	}
 
 	

@@ -26,6 +26,8 @@ public class EmployeCtrl {
 	@Autowired
     private IEmployeMetier metier;
 	
+	private boolean affichage = false;
+	
 	
 	@RequestMapping(value="/indexEmploye")
 	public String index(EmployeModel employeModel, Model model){
@@ -44,13 +46,15 @@ public class EmployeCtrl {
 		Collection<Employe> tabEmploye = metier.getListEmploye();
 		employeModel.setTabEmploye(tabEmploye);
 		model.addAttribute("AttrEmploye",employeModel);
-		return "employe";	
+		return "redirect:indexEmploye";	
 	}
 	
 	@RequestMapping(value="/getListEmploye")
 	public String getListEmploye(EmployeModel employeModel, Model model){
 		Collection <Employe> employe = metier.getListEmploye();
 	    employeModel.setTabEmploye(employe);
+	    affichage=true;
+	    employeModel.setAffichageEmployes(affichage);
 		model.addAttribute("AttrEmploye",employeModel);
 		return "employe";
 	}

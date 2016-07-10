@@ -1,19 +1,35 @@
-@CHARSET "ISO-8859-1";
-div {
-	border: 1px solid black;
-	margin: 10px;
-	padding: 10px;
+<meta http-equiv="Content-Type" content="text/css; charset=ISO-8859-1">
+.navbar-inverse {
+    background-color: #FFF !important;
+}
+.nav {
+    padding-top: 5px;
+}
+.navbar{
+	border-color: #222 !important;
+	border-radius: 0px !important;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color: rgb(200,200,200) !important;
+}
+a{
+	color: rgb(207, 74, 74) !important;
 }
 
-.table td {
-	border: 1px solid black;
-	margin: 10px;
-	padding: 10px;
+body{
+	background-color: rgb(200, 200, 200) !important;
 }
-
-.table th {
+h1{
+	color: rgb(207, 74, 74) !important;
+	background-color: #222 !important;
+	text-align: center !important;
 	border: 1px solid black;
-	margin: 10px;
-	padding: 10px;
-	background: pink;
+	border-color: #222;
+	padding: 10px 15px;
+}
+section{
+	margin-top: -20px !important;
 }

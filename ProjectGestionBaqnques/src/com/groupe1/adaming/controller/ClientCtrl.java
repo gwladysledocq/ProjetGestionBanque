@@ -130,6 +130,7 @@ public class ClientCtrl {
 	public String getComptes(ClientModel clientModel, Model model, 
 			@RequestParam("nomClient") String nomClient) {
 		Collection<Client> tab = metier.getClientParMC("");
+		clientModel.setTabClient(tab);
 		Iterator<Client> it = tab.iterator();
 		Collection<Compte> tabCompte;
 		while(it.hasNext()){
